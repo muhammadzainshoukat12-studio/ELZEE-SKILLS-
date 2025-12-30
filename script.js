@@ -1,85 +1,36 @@
 // HERO SLIDER
-let slides=document.querySelectorAll('.slide');
-let index=0;
-setInterval(()=>{
-slides[index].classList.remove('active');
-index=(index+1)%slides.length;
-slides[index].classList.add('active');
-},4000);
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+function updateSlider(){ slides.forEach((s,i)=>s.classList.toggle('active', i===currentSlide)); dots.forEach((d,i)=>d.classList.toggle('active', i===currentSlide)); }
+function nextSlide(){ currentSlide=(currentSlide+1)%slides.length; updateSlider(); }
+function prevSlide(){ currentSlide=(currentSlide-1+slides.length)%slides.length; updateSlider(); }
+function goToSlide(n){ currentSlide=n; updateSlider(); }
+setInterval(()=>{ nextSlide(); },4000);
 
-// COURSES DATA
-const courses={
-htmlcss:{
-title:"HTML & CSS Course",
-weeks:[
-"Week 1: HTML Intro & Tools",
-"Week 2: Structure & Tags",
-"Week 3: Links, Images",
-"Week 4: Forms & Project",
-"Week 5: CSS Basics",
-"Week 6: Flexbox",
-"Week 7: Grid",
-"Week 8: Responsive + Freelancing"
-]
-},
-javascript:{
-title:"JavaScript Course",
-weeks:[
-"Variables & Data Types",
-"Conditions & Loops",
-"Functions",
-"Arrays & Objects",
-"DOM",
-"Events",
-"Projects",
-"Career Guide"
-]
-},
-design:{
-title:"Graphic Designing",
-weeks:[
-"Design Basics",
-"Canva",
-"Photoshop",
-"Branding",
-"Ads",
-"Portfolio",
-"Fiverr",
-"Final Project"
-]
-},
-freelance:{
-title:"Freelancing",
-weeks:[
-"Platforms",
-"Profile Setup",
-"Gigs",
-"Proposals",
-"Clients",
-"Payments",
-"Scaling",
-"Roadmap"
-]
-}
-};
+// HERO SWIPE
+let touchStartX=0,touchEndX=0;
+const hero=document.querySelector('.hero');
+hero.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;});
+hero.addEventListener('touchend',e=>{touchEndX=e.changedTouches[0].screenX;if(touchEndX<touchStartX-50) nextSlide();if(touchEndX>touchStartX+50) prevSlide();});
 
-function openCourse(key){
-let c=courses[key];
-let html="<ul>";
-c.weeks.forEach(w=>html+=`<li>${w}</li>`);
-html+="</ul>";
-document.getElementById("courseTitle").innerText=c.title;
-document.getElementById("courseOutline").innerHTML=html;
-document.getElementById("courseModal").style.display="block";
-}
-function closeModal(){
-document.getElementById("courseModal").style.display="none";
-}
-function toggleMenu(){
-  const nav = document.getElementById("navMenu");
-  if(nav.style.display === "flex"){
-    nav.style.display = "none";
-  }else{
-    nav.style.display = "flex";
-  }
-}
+// VIDEO POPUP
+function openVideo(){document.getElementById("videoPopup").style.display="flex";document.getElementById("popupVideo").play();}
+function closeVideo(){const video=document.getElementById("popupVideo");video.pause();video.currentTime=0;document.getElementById("videoPopup").style.display="none";}
+
+// MOBILE NAV
+const hamburger=document.getElementById('hamburger');
+const navLinks=document.getElementById('navLinks');
+hamburger.addEventListener('click',()=>{navLinks.classList.toggle('active');});
+document.querySelectorAll('#navLinks a').forEach(link=>{link.addEventListener('click',()=>{navLinks.classList.remove('active');});});
+
+// SMOOTH SCROLL
+document.querySelectorAll('nav a').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});});});
+
+// SCROLL ANIMATIONS
+const faders=document.querySelectorAll('.fade-up,.fade-left,.fade-right,.fade-in');
+const options={threshold:0.2};
+const appearOnScroll=new IntersectionObserver(function(entries,observer){
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}});
+},options);
+faders.forEach(fader=>{appearOnScroll.observe(fader);});

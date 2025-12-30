@@ -5,63 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ELZEE SKILLS | Learn IT & Earn Online</title>
 <link rel="stylesheet" href="style.css">
-<!-- CSS (ADD IN style.css) -->
-<style>
-.social-links{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-justify-content:center;
-align-items:center;
-margin:20px 0;
-}
-
-
-.social-item{
-display:flex;
-align-items:center;
-gap:8px;
-padding:8px 14px;
-border-radius:30px;
-background:#ffffff;
-text-decoration:none;
-color:#222;
-font-weight:600;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
-transition:all 0.3s ease;
-}
-
-
-.social-item img{
-width:28px;
-height:28px;
-}
-
-
-.social-item:hover{
-transform:translateY(-4px);
-box-shadow:0 8px 20px rgba(0,0,0,0.15);
-}
-
-
-/* Dark footer version */
-.footer .social-item{
-background:white;
-color:black;
-}
-</style>
-
-
-
-
-<!-- HOW TO USE IN ANY SECTION -->
-<!-- Just paste this where needed -->
-<!--
-<section class="about">
-<h2>Follow ELZEE SKILLS</h2>
-(PASTE SOCIAL LINKS HERE)
-</section>
--->
 </head>
 <body>
 
@@ -71,110 +14,72 @@ color:black;
     <img src="ELZEE SKILLS.png" alt="ELZEE SKILLS">
     <h1>ELZEE SKILLS</h1>
   </div>
-
-  <nav>
+  <div class="nav-links" id="navLinks">
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#courses">Courses</a>
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
-  </nav>
-
-  
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </header>
 
 <!-- HERO SLIDER -->
-<section class="hero" id="home">
+<section class="hero fade-up" id="home">
   <div class="slide active" style="background-image:url('BANNER.png')">
-    <div class="hero-text">
-      <h2>Learn IT Skills</h2>
-      <p>Build career with practical training</p>
-    </div>
+    <div class="hero-text fade-in"><h2>Learn IT Skills</h2><p>Build career with practical training</p></div>
   </div>
-
   <div class="slide" style="background-image:url('ELZEE.png')">
-    <div class="hero-text">
-      <h2>Earn Online</h2>
-      <p>Freelancing & Remote jobs</p>
-    </div>
+    <div class="hero-text fade-in"><h2>Earn Online</h2><p>Freelancing & Remote jobs</p></div>
   </div>
-
   <div class="slide" style="background-image:url('BANNER.png')">
-    <div class="hero-text">
-      <h2>Professional Certificates</h2>
-      <p>Trusted & verifiable</p>
-    </div>
+    <div class="hero-text fade-in"><h2>Professional Certificates</h2><p>Trusted & verifiable</p></div>
+  </div>
+  <div class="arrow left" onclick="prevSlide()">&#10094;</div>
+  <div class="arrow right" onclick="nextSlide()">&#10095;</div>
+  <div class="dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="section" id="about">
+<section class="section fade-up" id="about">
 <h2>About ELZEE SKILLS</h2>
-<div class="about-box">
+<div class="about-box fade-left">
   <img src="zain image.jpg" class="owner">
   <div>
     <h3>Muhammad Zain</h3>
-    <p>
-      Founder & Instructor at Zain ELZEE SKILLS.  
-      We provide practical IT courses, freelancing guidance,
-      and real-world projects to help students earn online.
-    </p>
+    <p>Founder & Instructor at Zain ELZEE SKILLS. We provide practical IT courses, freelancing guidance, and real-world projects to help students earn online.</p>
   </div>
 </div>
 </section>
 
 <!-- COURSES -->
-<section class="section" id="courses">
+<section class="section fade-up" id="courses">
 <h2>Our Courses</h2>
-
-<div class="course-grid">
-  <div class="course-card" onclick="openCourse('htmlcss')">
-    <h3>HTML & CSS</h3>
-    <p>Front-End Foundation</p>
-  </div>
-
-  <div class="course-card" onclick="openCourse('javascript')">
-    <h3>JavaScript</h3>
-    <p>Modern JS Development</p>
-  </div>
-
-  <div class="course-card" onclick="openCourse('design')">
-    <h3>Graphic Designing</h3>
-    <p>Canva & Photoshop</p>
-  </div>
-
-  <div class="course-card" onclick="openCourse('freelance')">
-    <h3>Freelancing</h3>
-    <p>Online Earning</p>
-  </div>
+<div class="course-grid fade-right">
+  <div class="course-card">HTML & CSS</div>
+  <div class="course-card">JavaScript</div>
+  <div class="course-card">Graphic Designing</div>
+  <div class="course-card">Freelancing</div>
 </div>
 </section>
-
-<!-- MODAL -->
-<div id="courseModal" class="modal">
-  <div class="modal-box">
-    <span class="close" onclick="closeModal()">×</span>
-    <h3 id="courseTitle"></h3>
-    <p><b>Institute:</b> Zain TechSkills</p>
-    <p><b>Instructor:</b> Muhammad Zain</p>
-    <div id="courseOutline"></div>
-  </div>
-</div>
 
 <!-- GALLERY -->
-<section class="gallery" id="gallery">
-  <h2>ELZEE SKILLS – Gallery</h2>
-
-  <div class="gallery-container">
-
-    <!-- VIDEO THUMBNAIL -->
-<div class="video-box" onclick="openVideo()">
-  <img src="BANNER.png" alt="Graphic Designing">
-  <span class="play-btn">▶</span>
-  <p>Graphic Designing Course – ELZEE SKILLS</p>
+<section class="gallery fade-up" id="gallery">
+<h2>ELZEE SKILLS – Gallery</h2>
+<div class="gallery-container fade-left">
+  <div class="video-box" onclick="openVideo()">
+    <img src="BANNER.png" alt="Graphic Designing"><span class="play-btn">▶</span>
+    <p>Graphic Designing Course – ELZEE SKILLS</p>
+  </div>
+  <div class="video-box" onclick="openVideo()">
+    <img src="ELZEE.png" alt="Graphic Designing"><span class="play-btn">▶</span>
+    <p>Graphic Designing Course – ELZEE SKILLS</p>
+  </div>
 </div>
-
-<!-- POPUP MODAL -->
 <div id="videoPopup" class="video-popup">
   <div class="video-popup-content">
     <span class="close-btn" onclick="closeVideo()">✖</span>
@@ -183,45 +88,23 @@ color:black;
     </video>
   </div>
 </div>
-<div class="video-box" onclick="openVideo()">
-  <img src="ELZEE.png" alt="Graphic Designing">
-  <span class="play-btn">▶</span>
-  <p>Graphic Designing Course – ELZEE SKILLS</p>
-</div>
-
-<!-- POPUP MODAL -->
-<div id="videoPopup" class="video-popup">
-  <div class="video-popup-content">
-    <span class="close-btn" onclick="closeVideo()">✖</span>
-    <video id="popupVideo" controls>
-      <source src="videos/graphic-design.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-    
-
-  </div>
 </section>
 
-
 <!-- CONTACT -->
-<section class="section" id="contact">
+<section class="section fade-up" id="contact">
 <h2>Contact Us</h2>
-
-<div class="contact-box">
-<form>
-  <input type="text" placeholder="Your Name" required>
-  <input type="email" placeholder="Email" required>
-  <input type="tel" placeholder="Phone" required>
-  <textarea placeholder="Message"></textarea>
-  <button>Send Message</button>
-</form>
-
-<div class="location">
-  <h4>Location</h4>
-  <p>Pakistan (Online Institute)</p>
-</div>
+<div class="contact-box fade-left">
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone" required>
+    <textarea placeholder="Message"></textarea>
+    <button>Send Message</button>
+  </form>
+  <div class="location">
+    <h4>Location</h4>
+    <p>Pakistan (Online Institute)</p>
+  </div>
 </div>
 </section>
 
@@ -229,51 +112,15 @@ color:black;
 <footer>
   <img src="ELZEE SKILLS.png">
   <p>Zain TechSkills – Practical IT Courses & Online Earning</p>
-
-  <!-- SOCIAL LINKS COMPONENT (IMAGE BASED) -->
-<!-- Use this block in HEADER, HERO, ABOUT, COURSES, GALLERY, CONTACT, FOOTER -->
-
-
-<div class="social-links">
-<a href="https://www.youtube.com/@MuhammadZainShoukatHafiz" target="_blank" class="social-item">
-<img src="youtube.png" alt="YouTube">
-<span>YouTube</span>
-</a>
-
-
-<a href="https://www.tiktok.com/@muhammadzainshoukathafiz" target="_blank" class="social-item">
-<img src="tiktok.png" alt="TikTok">
-<span>TikTok</span>
-</a>
-
-
-
-<a href="https://www.linkedin.com/in/muhammad-zain-shoukat-a1598b3a0/" target="_blank" class="social-item">
-<img src="link.png" alt="LinkedIn">
-<span>LinkedIn</span>
-</a>
-
-
-
-</div>
-
+  <div class="social-links">
+    <a href="#" class="social-item"><img src="youtube.png" alt="YouTube"><span>YouTube</span></a>
+    <a href="#" class="social-item"><img src="tiktok.png" alt="TikTok"><span>TikTok</span></a>
+    <a href="#" class="social-item"><img src="link.png" alt="LinkedIn"><span>LinkedIn</span></a>
+  </div>
   <p>© 2025 Zain TechSkills</p>
 </footer>
-
 <script src="script.js"></script>
-<script>
-function openVideo() {
-  document.getElementById("videoPopup").style.display = "flex";
-  document.getElementById("popupVideo").play();
-}
 
-function closeVideo() {
-  const video = document.getElementById("popupVideo");
-  video.pause();
-  video.currentTime = 0;
-  document.getElementById("videoPopup").style.display = "none";
-}
-</script>
 
 </body>
 </html>
