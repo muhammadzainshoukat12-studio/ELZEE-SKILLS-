@@ -1,12 +1,41 @@
 // HERO SLIDER
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-function updateSlider(){ slides.forEach((s,i)=>s.classList.toggle('active', i===currentSlide)); dots.forEach((d,i)=>d.classList.toggle('active', i===currentSlide)); }
-function nextSlide(){ currentSlide=(currentSlide+1)%slides.length; updateSlider(); }
-function prevSlide(){ currentSlide=(currentSlide-1+slides.length)%slides.length; updateSlider(); }
-function goToSlide(n){ currentSlide=n; updateSlider(); }
-setInterval(()=>{ nextSlide(); },4000);
+let slides = document.querySelectorAll(".slide");
+let dotsContainer = document.querySelector(".dots");
+let index = 0;
+
+// Create dots dynamically
+slides.forEach((_, i) => {
+  let dot = document.createElement("span");
+  dot.addEventListener("click", () => showSlide(i));
+  dotsContainer.appendChild(dot);
+});
+
+let dots = document.querySelectorAll(".dots span");
+dots[0].classList.add("active");
+
+function showSlide(i) {
+  slides.forEach(slide => slide.classList.remove("active"));
+  dots.forEach(dot => dot.classList.remove("active"));
+
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+  index = i;
+}
+
+function nextSlide() {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+function prevSlide() {
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+}
+
+// Auto Slide
+setInterval(() => {
+  nextSlide();
+}, 5000);
 
 // HERO SWIPE
 let touchStartX=0,touchEndX=0;

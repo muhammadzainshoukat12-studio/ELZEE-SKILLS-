@@ -24,24 +24,71 @@
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </header>
 
-<!-- HERO SLIDER -->
-<section class="hero fade-up" id="home">
-  <div class="slide active" style="background-image:url('BANNER.png')">
-    <div class="hero-text fade-in"><h2>Learn IT Skills</h2><p>Build career with practical training</p></div>
+<!-- PROFESSIONAL HERO SLIDER -->
+<section class="hero" id="home">
+
+  <div class="slides">
+
+    <!-- Slide 1 -->
+    <div class="slide active" style="background-image:url('new2banner.jfif')">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1>Learn Modern IT Skills</h1>
+        <p>Start your journey in Web Development & Freelancing</p>
+        <div class="hero-buttons">
+          <a href="#courses" class="btn-primary">View Courses</a>
+          <a href="#contact" class="btn-secondary">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" style="background-image:url('new3banner.jfif')">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1>Earn Online from Home</h1>
+        <p>Freelancing, Remote Jobs & Digital Skills</p>
+        <div class="hero-buttons">
+          <a href="#courses" class="btn-primary">Start Learning</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" style="background-image:url('new4banner.jfif')">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1>Professional Certifications</h1>
+        <p>Recognized & Verifiable Certificates</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-secondary">Get Certificate</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" style="background-image:url('new3banner.jfif')">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1>Real World Projects</h1>
+        <p>Practical Based Training System</p>
+        <div class="hero-buttons">
+          <a href="#courses" class="btn-primary">Explore</a>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="slide" style="background-image:url('ELZEE.png')">
-    <div class="hero-text fade-in"><h2>Earn Online</h2><p>Freelancing & Remote jobs</p></div>
+
+  <!-- Navigation -->
+  <div class="nav-arrows">
+    <span onclick="prevSlide()">❮</span>
+    <span onclick="nextSlide()">❯</span>
   </div>
-  <div class="slide" style="background-image:url('BANNER.png')">
-    <div class="hero-text fade-in"><h2>Professional Certificates</h2><p>Trusted & verifiable</p></div>
-  </div>
-  <div class="arrow left" onclick="prevSlide()">&#10094;</div>
-  <div class="arrow right" onclick="nextSlide()">&#10095;</div>
-  <div class="dots">
-    <span class="dot active" onclick="goToSlide(0)"></span>
-    <span class="dot" onclick="goToSlide(1)"></span>
-    <span class="dot" onclick="goToSlide(2)"></span>
-  </div>
+
+  <!-- Dots -->
+  <div class="dots"></div>
+
 </section>
 
 <!-- ABOUT -->
