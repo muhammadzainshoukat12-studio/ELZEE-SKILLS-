@@ -1,65 +1,175 @@
-// HERO SLIDER
-let slides = document.querySelectorAll(".slide");
-let dotsContainer = document.querySelector(".dots");
-let index = 0;
+// Mobile Menu
 
-// Create dots dynamically
-slides.forEach((_, i) => {
-  let dot = document.createElement("span");
-  dot.addEventListener("click", () => showSlide(i));
-  dotsContainer.appendChild(dot);
+const menuBtn=document.querySelector(".menu-toggle");
+const nav=document.querySelector("nav");
+
+menuBtn.addEventListener("click",()=>{
+nav.classList.toggle("active");
 });
 
-let dots = document.querySelectorAll(".dots span");
-dots[0].classList.add("active");
+// Hero Slider
 
-function showSlide(i) {
-  slides.forEach(slide => slide.classList.remove("active"));
-  dots.forEach(dot => dot.classList.remove("active"));
+const slides=document.querySelectorAll(".slide");
 
-  slides[i].classList.add("active");
-  dots[i].classList.add("active");
-  index = i;
+let currentSlide=0;
+
+function showSlide(index){
+
+slides.forEach(slide=>{
+slide.classList.remove("active");
+});
+
+slides[index].classList.add("active");
+
 }
 
-function nextSlide() {
-  index = (index + 1) % slides.length;
-  showSlide(index);
+setInterval(()=>{
+
+currentSlide++;
+
+if(currentSlide>=slides.length){
+currentSlide=0;
 }
 
-function prevSlide() {
-  index = (index - 1 + slides.length) % slides.length;
-  showSlide(index);
+showSlide(currentSlide);
+
+},5000);
+
+// Registration Number
+
+const regNo=document.getElementById("regNo");
+
+if(regNo){
+
+regNo.value=
+"ELZEE-2026-" +
+Math.floor(1000+Math.random()*9000);
+
 }
 
-// Auto Slide
-setInterval(() => {
-  nextSlide();
-}, 5000);
+// Form Submission
 
-// HERO SWIPE
-let touchStartX=0,touchEndX=0;
-const hero=document.querySelector('.hero');
-hero.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;});
-hero.addEventListener('touchend',e=>{touchEndX=e.changedTouches[0].screenX;if(touchEndX<touchStartX-50) nextSlide();if(touchEndX>touchStartX+50) prevSlide();});
+const form=document.querySelector(".registration-form");
 
-// VIDEO POPUP
-function openVideo(){document.getElementById("videoPopup").style.display="flex";document.getElementById("popupVideo").play();}
-function closeVideo(){const video=document.getElementById("popupVideo");video.pause();video.currentTime=0;document.getElementById("videoPopup").style.display="none";}
+if(form){
 
-// MOBILE NAV
-const hamburger=document.getElementById('hamburger');
-const navLinks=document.getElementById('navLinks');
-hamburger.addEventListener('click',()=>{navLinks.classList.toggle('active');});
-document.querySelectorAll('#navLinks a').forEach(link=>{link.addEventListener('click',()=>{navLinks.classList.remove('active');});});
+form.addEventListener("submit",(e)=>{
 
-// SMOOTH SCROLL
-document.querySelectorAll('nav a').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});});});
+e.preventDefault();
 
-// SCROLL ANIMATIONS
-const faders=document.querySelectorAll('.fade-up,.fade-left,.fade-right,.fade-in');
-const options={threshold:0.2};
-const appearOnScroll=new IntersectionObserver(function(entries,observer){
-  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}});
-},options);
-faders.forEach(fader=>{appearOnScroll.observe(fader);});
+alert(
+"Admission Form Submitted Successfully!"
+);
+
+form.reset();
+
+});
+
+}
+
+// Course Search
+
+const search=document.getElementById("courseSearch");
+
+if(search){
+
+search.addEventListener("keyup",()=>{
+
+let filter=search.value.toLowerCase();
+
+document.querySelectorAll(".course-card")
+.forEach(card=>{
+
+card.style.display=
+card.innerText.toLowerCase()
+.includes(filter)
+? "block"
+: "none";
+
+});
+
+});
+
+}
+
+// Counter Animation
+
+function animateCounter(id,end){
+
+let count=0;
+
+let interval=setInterval(()=>{
+
+count++;
+
+document.getElementById(id).innerText=count+"+";
+
+if(count>=end){
+clearInterval(interval);
+}
+
+},5);
+
+}
+
+if(document.getElementById("students")){
+animateCounter("students",1500);
+animateCounter("coursesCount",20);
+animateCounter("certificates",1200);
+}
+
+// Back To Top
+
+const topBtn=document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>300){
+topBtn.style.display="block";
+}else{
+topBtn.style.display="none";
+}
+
+});
+
+topBtn.addEventListener("click",()=>{
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+// Gallery Lightbox
+
+document.querySelectorAll(".gallery-grid img")
+.forEach(img=>{
+
+img.addEventListener("click",()=>{
+
+const popup=document.createElement("div");
+
+popup.style.position="fixed";
+popup.style.top="0";
+popup.style.left="0";
+popup.style.width="100%";
+popup.style.height="100%";
+popup.style.background="rgba(0,0,0,.9)";
+popup.style.display="flex";
+popup.style.justifyContent="center";
+popup.style.alignItems="center";
+
+popup.innerHTML=
+`<img src="${img.src}"
+style="max-width:90%;max-height:90%;">`;
+
+popup.onclick=()=>{
+popup.remove();
+};
+
+document.body.appendChild(popup);
+
+});
+
+});
